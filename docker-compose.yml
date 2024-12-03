@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  npm:
+    build: .
+    image: node:21
+    container_name: frontend
+    ports:
+      - "3000:3000"

@@ -1,0 +1,124 @@
+/* General Layout */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #003366, #001122);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden; /* Cache les animations qui débordent */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animation Styles */
+.animation-left, .animation-right {
+    position: absolute;
+    top: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: pulse 6s infinite;
+}
+
+.animation-left {
+    left: -100px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 255, 0.5));
+}
+
+.animation-right {
+    right: -100px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 255, 255, 0.5));
+}
+
+/* Animation Keyframes */
+@keyframes pulse {
+    0%, 100% {
+        transform: translateY(-20px) scale(1);
+    }
+    50% {
+        transform: translateY(20px) scale(1.2);
+    }
+}
+
+/* Form Style */
+.form {
+    background-color: #1e1e1e;
+    padding: 3rem; /* Taille augmentée */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Ombre accentuée */
+    width: 100%;
+    max-width: 400px; /* Largeur augmentée */
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* Input Fields */
+.input {
+    width: 90%; /* Réduction de la largeur à 90% du conteneur */
+    padding: 0.8rem; /* Ajustement du padding pour équilibrer */
+    margin: 0.7rem auto; /* Centre horizontalement */
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2b2b2b;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #4caf50; /* Vert brillant */
+    outline: none;
+}
+
+/* Buttons */
+.button {
+    width: 100%;
+    padding: 0.9rem;
+    margin-top: 1rem;
+    background-color: #4caf50; /* Vert futuriste */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Zoom léger au survol */
+}
+
+/* Microsoft Button */
+.ms-button {
+    background-color: #0078d4; /* Couleur Microsoft */
+    margin-top: 1rem;
+    color: white;
+}
+
+.ms-button:hover {
+    background-color: #005a9e;
+}
+
+/* Navigation Button */
+.nav-button {
+    background-color: #1e90ff; /* Bleu brillant */
+    margin-top: 1rem;
+    color: white;
+}
+
+.nav-button:hover {
+    background-color: #1c86ee;
+}
+
+.form .error-message {
+    color: #ff4d4d; /* Rouge vif */
+    font-size: 1.5rem;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+

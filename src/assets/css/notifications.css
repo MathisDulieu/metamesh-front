@@ -1,0 +1,138 @@
+/* Notifications Page */
+.notifications-page {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* Header */
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box; /* Assure que le padding ne dépasse pas */
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #000;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.logout-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #c9302c;
+}
+
+/* Notifications List */
+.notifications-content {
+    margin-top: 20px; /* Ajoute un espace entre le header et les notifications */
+    padding: 0 20px; /* Espace à gauche et à droite des notifications */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+}
+
+/* Notifications Items */
+.notifications-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacement entre la date et le message */
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px; /* Espace supplémentaire à gauche et à droite des notifications */
+}
+
+.notification-item:hover {
+    transform: translateY(-3px); /* Effet de levée */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.notification-date {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #999;
+    min-width: 150px; /* Largeur minimale pour aligner les dates */
+}
+
+.notification-message {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    flex: 1; /* Permet au message de prendre le reste de l'espace */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .notification-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .notification-date {
+        margin-bottom: 5px; /* Ajoute un espacement sous la date */
+    }
+
+    .notifications-content {
+        padding: 0 10px; /* Réduit les marges latérales sur mobile */
+    }
+}
+
+/* Loader */
+.loader {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 20px;
+}

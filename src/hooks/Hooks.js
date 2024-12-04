@@ -1,7 +1,13 @@
 import Cookies from 'js-cookie';
 import data from "bootstrap/js/src/dom/data";
 
-const API_URL = 'https://metamesh-app-metamesh-api.azuremicroservices.io/api';
+const API_URL = process.env.REACT_APP_API_URL;
+
+if (!API_URL) {
+    console.error("REACT_APP_API_URL is not defined");
+}
+
+export { API_URL };
 
 export async function login(data) {
     const response = await fetch(`${API_URL}/auth/login`, {

@@ -26,7 +26,13 @@ jobs:
           npm install
           npm run build
 
-      # 4. Option 1 : Nettoyer wwwroot en déployant un répertoire vide
+      # 4. Connexion à Azure
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 5. Option 1 : Nettoyer wwwroot en déployant un répertoire vide
       - name: Clean wwwroot by deploying empty content
         run: |
           mkdir empty
@@ -35,12 +41,6 @@ jobs:
             --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
             --src-path $(pwd)/empty \
             --type static
-
-      # 5. Connexion à Azure
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # 6. Déployer les fichiers générés
       - name: Deploy to Azure App Service

@@ -22,13 +22,28 @@ jobs:
       - name: Build application
         run: npm run build
 
-      # 4. Connexion à Azure
+      # 4. Vérifiez si le dossier build existe
+      - name: List Root Directory
+        run: ls -l
+
+      - name: List Build Directory
+        run: ls -l ./build
+
+      # 5. Configurez les permissions sur le dossier build
+      - name: Set Permissions for Build Directory
+        run: chmod -R 755 ./build
+
+      # 6. Vérifiez les permissions
+      - name: Check Build Directory Permissions
+        run: ls -ld ./build
+
+      # 7. Connexion à Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 5. Déployer le dossier build
+      # 8. Déployer le dossier build
       - name: Deploy to Azure App Service
         run: |
           az webapp deploy \

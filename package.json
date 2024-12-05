@@ -15,8 +15,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node build/server.js",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,13 +51,5 @@
     "js-cookie": "^3.0.5",
     "react-datepicker": "^7.3.0",
     "react-router-dom": "^6.26.0"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!bootstrap|other-es6-package)/"
-    ],
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    }
   }
 }

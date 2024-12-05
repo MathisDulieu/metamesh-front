@@ -26,32 +26,21 @@ jobs:
           npm install
           npm run build
 
-      # 4. Vérifiez le répertoire courant et le contenu
-      - name: Show Current Directory
-        run: pwd
+      # 4. Créer un fichier ZIP
+      - name: Zip Build Directory
+        run: zip -r build.zip ./build
 
-      - name: List Root Directory
-        run: ls -l
-
-      - name: List Build Directory
-        run: ls -l ./build
-
-      # 5. Configure les permissions
-      - name: Fix Build Directory Permissions
-        run: chmod -R 777 ./build
-
-      # 6. Connexion à Azure
+      # 5. Connexion à Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 7. Déployer sur Azure App Service
-      - name: Deploy to Azure App Service
+      # 6. Déployer le ZIP sur Azure App Service
+      - name: Deploy ZIP to Azure App Service
         run: |
           az webapp deploy \
             --name ${{ secrets.AZURE_APP_SERVICE_NAME }} \
             --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-            --src-path $(pwd)/build \
-            --type static \
-            --verbose
+            --src-path $(pwd)/build.zip \
+            --type zip

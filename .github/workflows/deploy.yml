@@ -1,4 +1,4 @@
-name: Deploy Frontend to Azure App Service
+name: Deploy Frontend to Azure App Service (No Build)
 
 on:
   push:
@@ -6,21 +6,25 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupère le code source
+      # 1. Récupérer le code source
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 2. Connexion à Azure
+      # 2. Installer les dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # 3. Connexion à Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 3. Déployer le code source
+      # 4. Déployer le code source
       - name: Deploy to Azure App Service
         run: |
           az webapp up \

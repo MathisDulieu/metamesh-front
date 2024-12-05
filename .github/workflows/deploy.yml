@@ -14,17 +14,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 2. Connexion à Azure
+      # 2. Installer les dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # 3. Construire l'application
+      - name: Build application
+        run: npm run build
+
+      # 4. Connexion à Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 3. Déployer le code source
+      # 5. Déployer le dossier build
       - name: Deploy to Azure App Service
         run: |
           az webapp up \
             --name ${{ secrets.AZURE_APP_SERVICE_NAME }} \
             --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+            --src-path $(pwd)/build \
             --runtime "NODE|18-lts" \
             --location "francecentral"

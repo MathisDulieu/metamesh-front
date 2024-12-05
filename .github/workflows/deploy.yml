@@ -14,29 +14,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 2. Configurer Node.js (pour builder le projet React)
+      # 2. Configurer Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 21
 
-      # 3. Installer les dépendances et builder le projet
+      # 3. Installer les dépendances et générer le build
       - name: Install and Build Frontend
         run: |
           npm install
           npm run build
 
-      # 4. Connexion à Azure
+      # 4. Créer un fichier ZIP
+      - name: Zip Build Directory
+        run: zip -r build.zip ./build
+
+      # 5. Connexion à Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 5. Déployer sur Azure App Service
-      - name: Deploy to Azure App Service
+      # 6. Déployer le ZIP sur Azure App Service
+      - name: Deploy ZIP to Azure App Service
         run: |
           az webapp deploy \
             --name ${{ secrets.AZURE_APP_SERVICE_NAME }} \
             --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-            --src-path ./build \
-            --type static
+            --src-path $(pwd)/build.zip \
+            --type zip

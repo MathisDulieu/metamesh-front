@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import data from "bootstrap/js/src/dom/data";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://metamesh-spring-app-metamesh-api.azuremicroservices.io/api";
 
 if (!API_URL) {
     console.error("REACT_APP_API_URL is not defined");

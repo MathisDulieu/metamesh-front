@@ -23,8 +23,13 @@ jobs:
         run: npm run build
 
       # 4. Vérifiez le contenu du dossier build
-      - name: List Build Directory
-        run: ls -l ./build
+      - name: Verify Build Directory
+        run: |
+          if [ ! -d "$(pwd)/build" ]; then
+            echo "Build directory does not exist!"
+            exit 1
+          fi
+          ls -l ./build
 
       # 5. Connexion à Azure
       - name: Login to Azure
@@ -32,15 +37,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 6. Configurer le runtime Node.js
-      - name: Configure Node.js runtime
-        run: |
-          az webapp config set \
-            --name ${{ secrets.AZURE_APP_SERVICE_NAME }} \
-            --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-            --linux-fx-version "NODE|18-lts"
+      # 6. Fix Permissions (si nécessaire)
+      - name: Fix Permissions
+        run: chmod -R 755 $(pwd)/build
 
-      # 7. Déployer l'application
+      # 7. Déployer avec Linux comme OS
       - name: Deploy to Azure App Service
         run: |
           az webapp deploy \

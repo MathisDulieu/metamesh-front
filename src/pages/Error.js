@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import catImage from "../assets/img/funny-cat.png";
 import "../assets/css/error.css";

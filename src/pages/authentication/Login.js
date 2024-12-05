@@ -27,11 +27,9 @@ function Login() {
 
     return (
         <div className="container">
-            {/* Animations */}
             <div className="animation-left"></div>
             <div className="animation-right"></div>
 
-            {/* Formulaire */}
             <form className="form" onSubmit={handleSubmit} style={{ textAlign: "center" }}>
                 <h2 style={{ textAlign: "center", marginBottom: "1rem", fontSize: "2.7rem" }}>Login</h2>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}

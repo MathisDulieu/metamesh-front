@@ -23,19 +23,16 @@ jobs:
         run: npm run build
 
       # 4. Vérifiez si le dossier build existe
-      - name: List Root Directory
-        run: ls -l
-
       - name: List Build Directory
         run: ls -l ./build
 
-      # 5. Configurez les permissions sur le dossier build
-      - name: Set Permissions for Build Directory
-        run: chmod -R 755 ./build
+      # 5. Compresser le dossier build
+      - name: Zip Build Directory
+        run: zip -r build.zip build
 
-      # 6. Vérifiez les permissions
-      - name: Check Build Directory Permissions
-        run: ls -ld ./build
+      # 6. Vérifiez le contenu du fichier ZIP
+      - name: List Build ZIP
+        run: ls -l build.zip
 
       # 7. Connexion à Azure
       - name: Login to Azure
@@ -43,11 +40,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 8. Déployer le dossier build
-      - name: Deploy to Azure App Service
+      # 8. Déployer le fichier ZIP sur Azure
+      - name: Deploy Build ZIP to Azure
         run: |
           az webapp deploy \
             --name ${{ secrets.AZURE_APP_SERVICE_NAME }} \
             --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-            --src-path $(pwd)/build \
+            --src-path $(pwd)/build.zip \
             --type static

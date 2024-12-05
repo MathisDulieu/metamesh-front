@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5c3b5fc6.css",
+    "main.js": "/static/js/main.d6325d27.js",
+    "static/js/453.5a4ae862.chunk.js": "/static/js/453.5a4ae862.chunk.js",
+    "static/media/funny-cat.png": "/static/media/funny-cat.ba00708fe3944adc8afc.png",
+    "index.html": "/index.html",
+    "main.5c3b5fc6.css.map": "/static/css/main.5c3b5fc6.css.map",
+    "main.d6325d27.js.map": "/static/js/main.d6325d27.js.map",
+    "453.5a4ae862.chunk.js.map": "/static/js/453.5a4ae862.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5c3b5fc6.css",
+    "static/js/main.d6325d27.js"
+  ]
+}

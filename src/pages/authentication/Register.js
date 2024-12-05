@@ -15,9 +15,9 @@ function Register() {
         const password = event.target.password.value;
 
         try {
-            await register({ username, email, password }); // Remplacez par l'appel API approprié
+            await register({ username, email, password });
             setSuccessMessage("Registration successful! Redirecting to login...");
-            setTimeout(() => navigate("/login"), 3000); // Redirige vers login après 3 secondes
+            setTimeout(() => navigate("/login"), 3000);
         } catch (error) {
             setErrorMessage("Failed to register. Please try again.");
         }
@@ -25,7 +25,6 @@ function Register() {
 
     const handleMicrosoftRegister = () => {
         alert("Microsoft registration clicked!");
-        // Implémentez ici l'intégration Microsoft si nécessaire
     };
 
     return (

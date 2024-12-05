@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   npm:
     build: .
@@ -7,3 +5,5 @@ services:
     container_name: frontend
     ports:
       - "3000:3000"
+    environment:
+      REACT_APP_API_URL: 'https://metamesh-spring-app-metamesh-api.azuremicroservices.io/api'
